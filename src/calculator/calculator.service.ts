@@ -7,6 +7,11 @@ export class CalculatorService {
     let defaultDelimiter = /,|\n/;
 
     const numberArray = numbers.split(defaultDelimiter).map(Number);
+    const negativeNumbers = numberArray.filter(n => n < 0);
+    
+    if (negativeNumbers.length > 0) {
+      throw new Error(`negative numbers not allowed ${negativeNumbers.join(', ')}`);
+    }
     return numberArray.reduce((sum, current) => sum + current, 0);
   }
 }

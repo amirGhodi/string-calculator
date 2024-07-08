@@ -23,4 +23,21 @@ describe('CalculatorService', () => {
     expect(result).to.equal(6);
   });
 
+  it('should throw an error for negative numbers', () => {
+    try {
+      calculatorService.add('1,-2,3');
+    } catch (err){
+      expect(err.message).to.equal('negative numbers not allowed -2');
+    }
+
+  });
+
+  it('should throw an error listing all negative numbers', () => {
+    try {
+      calculatorService.add('-1,2,-3');
+    } catch (err){
+      expect(err.message).to.equal('negative numbers not allowed -1, -3');
+    }
+  });
+
 });
