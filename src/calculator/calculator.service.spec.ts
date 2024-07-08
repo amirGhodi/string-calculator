@@ -22,6 +22,11 @@ describe('CalculatorService', () => {
     const result = calculatorService.add('1\n2\n3');
     expect(result).to.equal(6);
   });
+  
+  it('should return the sum of numbers separated by newlines', () => {
+    const result = calculatorService.add('1\n2,3');
+    expect(result).to.equal(6);
+  });
 
   it('should throw an error for negative numbers', () => {
     try {
@@ -38,6 +43,16 @@ describe('CalculatorService', () => {
     } catch (err){
       expect(err.message).to.equal('negative numbers not allowed -1, -3');
     }
+  });
+
+  it('should handle custom single character delimiter', () => {
+    const result = calculatorService.add('//;\n1;2');
+    expect(result).to.equal(3);
+  });
+  
+  it('should handle empty strings in between delimiters', () => {
+    const result = calculatorService.add('//;\n1;2;;3');
+    expect(result).to.equal(6);
   });
 
 });
