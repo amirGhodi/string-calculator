@@ -13,4 +13,14 @@ describe('CalculatorService', () => {
     expect(result).to.equal(0);
   });
 
+  it('should return the sum of numbers separated by commas', () => {
+    const result = calculatorService.add('1,2,3');
+    expect(result).to.equal(6);
+  });
+
+  it('should return the sum of numbers separated by newlines', () => {
+    const result = calculatorService.add('1\n2\n3');
+    expect(result).to.equal(6);
+  });
+
 });
